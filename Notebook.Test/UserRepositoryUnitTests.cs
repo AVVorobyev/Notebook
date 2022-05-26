@@ -21,17 +21,6 @@ namespace Notebook.Test
                 .Options;
         }
 
-
-
-        //[Fact]
-        //public async void GetContactAsync_Test_Success()
-        //{
-        //    var user = new User() { UserName = "name_1" };
-        //    var _userRepository = await CreateUserRepositoryAsync(_dbContextOptions);
-
-        //    var _domainResult = _userRepository.GetTokenAsync();
-        //}
-
         [Fact]
         public async void AddUserAsync_Test_Success()
         {
