@@ -27,7 +27,7 @@ namespace Notebook.API.Controllers
 
             var _response = await _contactRepository.GetContactsAsync(_userId, takePages, skipPages);
 
-            _logger.LogInformation($">>>>>>>>>> call GetContactsAsync");
+            _logger.LogInformation($"Succeeded: {_response.Succeeded}");
 
             return Json(ContactDTOResponse.ConvertFromDomaiResult(_response));
         }
@@ -41,7 +41,7 @@ namespace Notebook.API.Controllers
 
             var _response = await _contactRepository.AddContactAsync(_userId, _contact);
 
-            _logger.LogInformation($">>>>>>>>>> call AddContactAsync");
+            _logger.LogInformation($"Succeeded: {_response.Succeeded}");
 
             return Json(ContactDTOResponse.ConvertFromDomaiResult(_response));
         }
@@ -53,7 +53,7 @@ namespace Notebook.API.Controllers
 
             var _response = await _contactRepository.EditContactAsync(_contact);
 
-            _logger.LogInformation($">>>>>>>>>> call EditContactAsync");
+            _logger.LogInformation($"Succeeded: {_response.Succeeded}");
 
             return Json(ContactDTOResponse.ConvertFromDomaiResult(_response));
         }
@@ -65,7 +65,7 @@ namespace Notebook.API.Controllers
             
             var _response = await _contactRepository.DeleteContactAsync(_contact);
 
-            _logger.LogInformation($">>>>>>>>>> call DeleteContactAsync");
+            _logger.LogInformation($"Succeeded: {_response.Succeeded}");
 
             return Json(ContactDTOResponse.ConvertFromDomaiResult(_response));
         }

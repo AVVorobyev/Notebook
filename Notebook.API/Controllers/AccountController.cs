@@ -25,7 +25,7 @@ namespace Notebook.API.Controllers
             var _user = userDTO.ConvertToUser();
             var _response = await _userRepository.AddUserAsync(_user);
 
-            _logger.LogInformation($">>>>>>>>>> call AddUserAsync");
+            _logger.LogInformation($"Succeeded: {_response.Succeeded}" );
 
             return Json(UserDTOResponse.ConvertFronDomainResult(_response));
         }
@@ -36,7 +36,7 @@ namespace Notebook.API.Controllers
             var _user = userDTO.ConvertToUser();
             var _response = await _userRepository.GetTokenAsync(_user);
 
-            _logger.LogInformation($">>>>>>>>>> call GetTokenAsync");
+            _logger.LogInformation($"Succeeded: {_response.Succeeded}");
 
             return Json(UserDTOResponse.ConvertFronDomainResult(_response));
         }
