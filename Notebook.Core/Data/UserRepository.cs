@@ -72,7 +72,7 @@ namespace Notebook.Core
 
             try
             {
-                _user = _context.Users.FirstOrDefault(user => user.UserName == userName);
+                _user = _context.Users.Single(u => u.UserName == userName);
             }
             catch (Exception)
             {

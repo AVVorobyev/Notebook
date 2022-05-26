@@ -22,8 +22,6 @@ namespace Notebook.Test
                 .Options;
         }
 
-
-
         [Fact]
         public async void EditContact_Test_Succeess()
         {
