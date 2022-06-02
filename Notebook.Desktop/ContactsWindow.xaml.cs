@@ -6,7 +6,7 @@ namespace Notebook.Desktop
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ContactsWindow : Window
     {        
         private Contact _selectedContact;
         private AuthorizationWindow _authorizationWindow;
@@ -15,13 +15,12 @@ namespace Notebook.Desktop
         private const int _pagesRange = 25;
         private int _currentPage;
 
-        public MainWindow()
+        public ContactsWindow()
         {
             InitializeComponent();
             _currentPage = 0;
             _repository = new Repository();
             InitializeContacs();
-
         }
 
         private async void InitializeContacs()
@@ -48,7 +47,7 @@ namespace Notebook.Desktop
 
             await _repository.GetContactsAsync(_pagesRange, _currentPage);
 
-            if (_result == string.Empty || _result == null) return;
+            if (string.IsNullOrEmpty(_result)) return;
 
             MessageBox.Show(_result);
         }
@@ -69,7 +68,7 @@ namespace Notebook.Desktop
 
             await _repository.GetContactsAsync(_pagesRange, _currentPage);
 
-            if (_result == string.Empty || _result == null) return;
+            if (string.IsNullOrEmpty(_result)) return;
 
             MessageBox.Show(_result);
         }
@@ -94,7 +93,7 @@ namespace Notebook.Desktop
 
             await _repository.GetContactsAsync(_pagesRange, _currentPage);
 
-            if (_result == string.Empty || _result == null) return;
+            if (string.IsNullOrEmpty(_result)) return;
             MessageBox.Show(_result);
         }
 
@@ -113,17 +112,18 @@ namespace Notebook.Desktop
 
             var _result = await _repository.GetContactsAsync(_pagesRange, _currentPage);
 
-            if (_result == string.Empty || _result == null) return;
+            if (string.IsNullOrEmpty(_result)) return;
             MessageBox.Show(_result);
         }
 
         private async void BtnClick_Forward(object sender, RoutedEventArgs e)
         {
+            if (gridViewContacts.Items.Count < _pagesRange) return;
             _currentPage += _pagesRange;
 
             var _result = await _repository.GetContactsAsync(_pagesRange, _currentPage);
 
-            if (_result == string.Empty || _result == null) return;
+            if (string.IsNullOrEmpty(_result)) return;
             MessageBox.Show(_result);
         }
     }

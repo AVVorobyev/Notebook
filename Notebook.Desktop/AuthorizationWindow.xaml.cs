@@ -7,7 +7,7 @@ namespace Notebook.Desktop
     /// </summary>
     public partial class AuthorizationWindow : Window
     {
-        private MainWindow _mainWindow;
+        private ContactsWindow _mainWindow;
         private readonly Repository _repository;
 
         public AuthorizationWindow()
@@ -18,17 +18,19 @@ namespace Notebook.Desktop
 
         private async void ButtonClickEnter(object sender, RoutedEventArgs e)
         {
-            if (userNameAuthorization.Text.Length < 6 || passwordAuthorization.Password.Length < 6)
+            if (userNameAuthorization.Text.Length < 6 ||
+                passwordAuthorization.Password.Length < 6)
             {
                 MessageBox.Show("Error: Username or password is less than 6 characters long");
                 return;
             }
 
-            var _result = await _repository.LogInAsync(userNameAuthorization.Text, passwordAuthorization.Password);
+            var _result = await _repository.LogInAsync(
+                userNameAuthorization.Text, passwordAuthorization.Password);
 
-            if (_result == string.Empty || _result == null)
+            if (string.IsNullOrEmpty(_result) || Application.Current.MainWindow != null)
             {
-                _mainWindow = new MainWindow();
+                _mainWindow = new ContactsWindow();
                 _mainWindow.Show();
                 Close();
             }
@@ -53,10 +55,10 @@ namespace Notebook.Desktop
             var _result = await _repository.RegistrationAsync(
                 userNameRegistration.Text, passRegistration.Password);
 
-            if (_result == string.Empty || _result == null)
+            if (string.IsNullOrEmpty(_result))
             {
                 await _repository.LogInAsync(userNameRegistration.Text, passRegistration.Password);
-                _mainWindow = new MainWindow();
+                _mainWindow = new ContactsWindow();
                 _mainWindow.Show();
                 Close();
             }
